@@ -11,7 +11,8 @@ import (
 const (
 	// Параметры подключения
 	host     = "localhost"
-	port     = 5433
+	//port     = 5433
+	port     = 5432
 	user     = "postgres"
 	password = "password" // Замените на ваш пароль
 	dbname   = "web_database"   // Замените на имя вашей базы данных

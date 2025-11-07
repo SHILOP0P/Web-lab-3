@@ -14,7 +14,7 @@
 По умолчанию используется:
 
 - хост: `localhost`
-- порт: `5433`
+- порт: `5432`
 - пользователь: `postgres`
 - имя базы данных: `web_database`
 - пароль: 'password'
@@ -22,7 +22,10 @@
 Создайте пустую БД:
 
 ```bash
-createdb -h localhost -p 5433 -U postgres web_database
+createdb -h localhost -p 5432 -U postgres web_database
+
+psql -h localhost -p 5432 -U postgres -d web_database
+
 ```
 
 ## Запуск приложения
