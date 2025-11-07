@@ -1,0 +1,131 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <base href="/front/">
+    <title>Добрострой</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<table class="header">
+    <tr>
+        <td class="header-logo">
+            <img src="images/logo.png">
+        </td>
+        <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+        <td class="header-login">
+            <table class="login-table">
+                <tr><td><input type="text" id="loginUsername" placeholder="логин"></td></tr>
+                <tr><td><input type="password" id="loginPassword" placeholder="пароль"></td></tr>
+                <tr>
+                    <td>
+                        <button type="button" class="login-button" onclick="login(event)">Войти</button>
+                        <a href="register.html"><button class="login-button">Регистрация</button></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+</table>
+
+
+<table class="navbar">
+  <tr>
+    <td><a href="catalog.html#materials">Строительные материалы</a></td>
+    <td><a href="catalog.html#finishing">Отделочные материалы</a></td>
+    <td><a href="catalog.html#tools">Инструменты</a></td>
+  </tr>
+</table>
+
+
+<br>
+
+<table  class="main">
+    <tr>
+        <td class="sidebar">
+            <a href="index.html">Главная</a><br>
+            <a href="about.html">О нас</a><br>
+            <a href="catalog.html">Каталог</a><br>
+            <a href="contacts.html">Контакты</a><br>
+        </td>
+
+    <td class="content">
+        <h2 align="center">Добро пожаловать в магазин «Добрострой»</h2>
+        <p><img src="images/index_content.png" align="left" width="120">
+            «Добрострой» — магазин строительно-отделочных материалов для вашего ремонта и строительства. 
+            У нас вы найдете цемент, краску, гипсокартон и многое другое.
+        </p>
+        <p>
+            Мы сотрудничаем только с проверенными производителями и гарантируем качество.
+        </p>
+
+
+        <h2>Ассортимент популярных строительных материалов</h2>
+        <table class="table-bordered">
+            <tr>
+                <td colspan="3" align="center" style="border: 3px double"><b>Основные категории товаров</b></td>
+            </tr>
+            <tr>
+                <td rowspan="2" align="center" style="border: 3px double"><b>Тип материала</b></td>
+                <td align="center" style="border: 3px double"><b>Примеры продукции</b></td>
+                <td align="center" style="border: 3px double"><b>Производители</b></td>
+            </tr>
+            <tr>
+                <td align="center" style="border: 3px double">Цемент, гипс, клей, штукатурка</td>
+                <td align="center" style="border: 3px double">Евроцемент, Knauf, Ceresit</td>
+            </tr>
+            <tr>
+                <td align="center" style="border: 3px double"><b>Отделочные материалы</b></td>
+                <td align="center" style="border: 3px double">Краски, обои, плитка</td>
+                <td align="center" style="border: 3px double">Tikkurila, Dulux, Caparol</td>
+            </tr>
+            <tr>
+                <td align="center" style="border: 3px double"><b>Инструменты</b></td>
+                <td align="center" style="border: 3px double">Дрели, шпатели, рулетки</td>
+                <td align="center" style="border: 3px double">Bosch, Makita, Matrix</td>
+            </tr>
+        </table>
+
+        <h2>Популярные направления продаж</h2>
+        <ul type="circle">
+            <li>Строительные смеси и цемент</li>
+            <li>Отделочные и лакокрасочные материалы</li>
+            <li>Инструменты и крепёж</li>
+            <li>Сантехника и электрика</li>
+        </ul>
+
+        <h2>Преимущества магазина «Добрострой»</h2>
+        <ol type="a">
+            <li>Широкий ассортимент и наличие на складе</li>
+            <li>Сертифицированные поставщики и качество</li>
+            <li>Доставка по городу и области</li>
+        </ol>
+
+        <h2>Этапы покупки в нашем магазине</h2>
+        <ol type="A">
+            <li>Выбор товаров в каталоге</li>
+            <li>Оформление заказа
+                <ol type="a">
+                    <li>Добавление в корзину</li>
+                    <li>Подтверждение и оплата</li>
+                </ol>
+            </li>
+            <li>Получение товара и проверка качества</li>
+        </ol>
+
+    </td>
+
+
+    <tr>
+        <td colspan="2"class = "footer">
+            <p><a href="reviews.html">Отзывы</a> | © 2025 Добрострой | Все права защищены</p>
+        </td>
+    </tr>
+</table>
+<script src="/js/auth/auth-api.js?v=6"></script>
+<script src="/js/auth/header-auth.js?v=6"></script>
+
+</body>
+</html>

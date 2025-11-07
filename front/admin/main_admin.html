@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Управление товарами</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+
+<table class="header">
+    <tr>
+        <td class="header-logo">
+            <img src="../images/logo.png">
+        </td>
+        <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+        
+
+    </tr>
+</table>
+
+
+<table class="navbar">
+  <tr>
+    <td><a href="catalog.html#materials">Строительные материалы</a></td>
+    <td><a href="catalog.html#tools">Инструменты</a></td>
+    <td><a href="catalog.html#tools">Инструменты</a></td>
+  </tr>
+</table>
+
+  <!-- Основной контент -->
+  <table class="main">
+    <tr>
+    <td class="sidebar">
+            <a href="../index.html">Главная</a><br>
+            <a href="../about.html">О нас</a><br>
+            <a href="../catalog.html">Каталог</a><br>
+            <a href="../contacts.html">Контакты</a><br>
+            <a href="main_admin.html">Админ-панель</a>
+            <br><br>
+            <button onclick="window.location.href='admin_add_product.html'" class="btn-add-product">Добавить товар</button>
+
+    </td>
+    <td id="productList" class="main-content"></td> <!-- Место для данных -->
+    </tr>
+  </table>
+
+      <table>
+        <tr>
+          <td colspan="2" class = "footer">
+              <p>© 2025 Добрострой | Все права защищены</p>
+          </td>
+        </tr>
+      </table>
+
+  <!-- Подключение JS -->
+  <script src="../js/admin/admin-api.js?v=6"></script>
+  <script src="../js/admin/admin-page-init.js?v=6"></script>
+</body>
+</html>

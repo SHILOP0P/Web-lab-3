@@ -1,0 +1,94 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <base href="/front/">
+  <title>Регистрация - Добрострой</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<table class="header">
+  <tr>
+    <td class="header-logo"><img src="images/logo.png"></td>
+    <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+    <td class="header-login"></td>
+  </tr>
+</table>
+
+<table class="main">
+  <tr>
+    <td class="sidebar">
+      <a href="index.html">Главная</a><br>
+      <a href="about.html">О нас</a><br>
+      <a href="catalog.html">Каталог</a><br>
+      <a href="contacts.html">Контакты</a><br>
+    </td>
+
+    <td class="content">
+      <h2>Регистрация нового пользователя</h2>
+      <form id="registerForm" class="register-box">
+        <label>Имя:</label>
+        <input type="text" id="firstName" placeholder="Введите имя" required>
+
+        <label>Фамилия:</label>
+        <input type="text" id="lastName" placeholder="Введите фамилию" required>
+
+        <label>Электронная почта:</label>
+        <input type="email" id="email" placeholder="example@mail.ru" required>
+
+        <label>Логин:</label>
+        <input type="text" id="username" placeholder="Придумайте логин" required>
+
+        <label>Пароль:</label>
+        <input type="password" id="password" placeholder="Придумайте пароль" minlength="6" required>
+
+        <label>Подтверждение пароля:</label>
+        <input type="password" id="confirmPassword" placeholder="Повторите пароль" required>
+
+        <label>Номер телефона:</label>
+        <input type="tel" id="phone" placeholder="+7 (___) ___-__-__" pattern="\\+?[0-9\\s\\-\\(\\)]{7,}" required>
+
+        <label>Пол:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="gender" value="Мужской" required> Мужской</label>
+          <label><input type="radio" name="gender" value="Женский"> Женский</label>
+        </div>
+
+        <label>Дата рождения:</label>
+        <input type="date" id="birthdate" required>
+
+        <label>Ваш регион:</label>
+        <select id="region" required>
+          <option value="">Выберите регион...</option>
+          <option>Москва и Московская область</option>
+          <option>Санкт-Петербург</option>
+          <option>Центральный федеральный округ</option>
+          <option>Южный федеральный округ</option>
+          <option>Уральский федеральный округ</option>
+          <option>Сибирский федеральный округ</option>
+          <option>Дальний Восток</option>
+        </select>
+
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="agreeTerms" required> 
+          Я подтверждаю согласие на обработку персональных данных и принимаю <a href="#" target="_blank">пользовательское соглашение</a>.</label>
+        </div>
+
+        <button type="submit">Зарегистрироваться</button>
+        <p id="message"></p>
+      </form>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="footer">
+      <p><a href="reviews.html">Отзывы</a> | © 2025 Добрострой | Все права защищены</p>
+    </td>
+  </tr>
+</table>
+
+<script src="/js/auth/auth-api.js?v=6"></script>
+<script src="js/register/register-page.js" defer></script>
+
+</body>
+</html>

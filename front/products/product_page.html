@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <base href="/front/">
+  <title>Товар — Добрострой</title>
+  <link rel="stylesheet" href="../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+
+<!-- Шапка как в cement.html -->
+<table class="header">
+  <tr>
+    <td class="header-logo">
+      <img src="../images/logo.png" alt="Добрострой" />
+    </td>
+    <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+    <td class="header-login">
+      <table class="login-table">
+        <tr><td><input type="text" id="loginUsername" placeholder="логин" /></td></tr>
+        <tr><td><input type="password" id="loginPassword" placeholder="пароль" /></td></tr>
+        <tr>
+          <td>
+            <button type="button" class="login-button" onclick="login(event)">Войти</button>
+            <a href="../register.html"><button class="login-button">Регистрация</button></a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- Навбар как в cement.html -->
+<table class="navbar">
+  <tr>
+    <td><a href="../catalog.html#materials">Строительные материалы</a></td>
+    <td><a href="../catalog.html#finishing">Отделочные материалы</a></td>
+    <td><a href="../catalog.html#tools">Инструменты</a></td>
+  </tr>
+</table>
+
+<br />
+
+<!-- Основная область как в cement.html -->
+<table class="main">
+  <tr>
+    <td class="sidebar">
+      <a href="../index.html">Главная</a><br />
+      <a href="../about.html">О нас</a><br />
+      <a href="../catalog.html">Каталог</a><br />
+      <a href="../contacts.html">Контакты</a>
+    </td>
+
+    <td class="content">
+      <h2 id="pTitle">Загрузка…</h2>
+
+      <!-- одно главное изображение (как в cement.html) -->
+      <img id="pImage" src="" width="300" alt="product" style="cursor:pointer;" />
+      <h3 id="priceH3">—</h3>
+
+      <h3>Описание товара</h3>
+      <p class="short-description" id="pShort">—</p>
+
+      <h3>Характеристики</h3>
+      <ul id="pCharsList"></ul>
+
+      <h3>Подробное описание</h3>
+      <div id="pFullDesc"></div>
+
+      <p><a href="../catalog.html" class="btn-primary">← Вернуться в каталог</a></p>
+    </td>
+  </tr>
+
+  <tr>
+    <td colspan="2" class="footer">
+      <p><a href="../reviews.html">Отзывы</a> | © 2025 Добрострой | Все права защищены</p>
+    </td>
+  </tr>
+</table>
+<script src="/js/auth/auth-api.js?v=6"></script>
+<script src="/js/auth/header-auth.js?v=6"></script>
+<script src="../js/product/product-init.js" defer></script>
+
+
+</body>
+</html>

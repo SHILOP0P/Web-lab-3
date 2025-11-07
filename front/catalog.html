@@ -1,0 +1,86 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <base href="/front/">
+    <title>Каталог - Добрострой</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<table class="header">
+    <tr>
+        <td class="header-logo">
+            <img src="images/logo.png">
+        </td>
+        <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+        <td class="header-login">
+            <table class="login-table">
+                <tr><td><input type="text" id="loginUsername" placeholder="логин"></td></tr>
+                <tr><td><input type="password" id="loginPassword" placeholder="пароль"></td></tr>
+                <tr>
+                    <td>
+                        <button type="button" class="login-button" onclick="login(event)">Войти</button>
+                        <a href="register.html"><button class="login-button">Регистрация</button></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+</table>
+
+
+<table class="navbar">
+  <tr>
+    <td><a href="catalog.html#materials">Строительные материалы</a></td>
+    <td><a href="catalog.html#tools">Инструменты</a></td>
+    <td><a href="catalog.html#tools">Инструменты</a></td>
+  </tr>
+</table>
+
+
+<br>
+
+
+<table class="main">
+    <tr>
+
+        <td class="sidebar">
+            <a href="index.html">Главная</a><br>
+            <a href="about.html">О нас</a><br>
+            <a href="catalog.html">Каталог</a><br>
+            <a href="contacts.html">Контакты</a><br>
+
+        </td>
+
+
+        <td class="content">
+            <h2 align="center">Каталог</h2>
+            <h3 id="materials" class="category-title">Строительные материалы</h3>
+            <div class="category" id="materialsList"></div>
+
+            <!-- ===== Категория 2 ===== -->
+            <h3 id="finishing" class="category-title">Отделочные материалы</h3>
+            <div class="category" id="finishingList"></div>
+
+            <!-- ===== Категория 3 ===== -->
+            <h3 id="tools" class="category-title">Инструменты</h3>
+            <div class="category" id="toolsList"></div>
+        </td>
+
+    </tr>
+
+
+    <tr>
+        <td colspan="2" class = "footer">
+            <p><a href="reviews.html">Отзывы</a> | © 2025 Добрострой | Все права защищены</p>
+        </td>
+    </tr>
+</table>
+
+<script src="js/catalog/catalog-init.js" defer></script>
+<script src="/js/auth/auth-api.js?v=6"></script>
+<script src="/js/auth/header-auth.js?v=6"></script>
+</body>
+</html>

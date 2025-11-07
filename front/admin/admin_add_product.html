@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Добавить товар — Добрострой</title>
+  <link rel="stylesheet" href="../style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+
+<!-- Шапка -->
+<table class="header">
+  <tr>
+    <td class="header-logo"><img src="../images/logo.png" alt="Добрострой"></td>
+    <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+  </tr>
+</table>
+
+<!-- Навбар -->
+<table class="navbar">
+  <tr>
+    <td><a href="catalog.html#materials">Строительные материалы</a></td>
+    <td><a href="catalog.html#finishing">Отделочные материалы</a></td>
+    <td><a href="catalog.html#tools">Инструменты</a></td>
+  </tr>
+</table>
+
+<!-- Основная форма для добавления товара -->
+<table class="main">
+  <tr>
+    <td class="sidebar">
+      <a href="../index.html">Главная</a><br>
+      <a href="../about.html">О нас</a><br>
+      <a href="../catalog.html">Каталог</a><br>
+      <a href="../contacts.html">Контакты</a><br>
+      <a href="main_admin.html">Админ-панель</a>
+    </td>
+    <td class="content">
+      <h2>Добавить товар</h2>
+
+      <form class="contact-form" id="productForm" onsubmit="return false;">
+        <table class="product-form-table">
+          <tr>
+            <th>Производитель (ID):</th>
+            <td><input type="number" id="manufacturer_id" size="40" min="0" required></td>
+          </tr>
+          <tr>
+            <th>Название товара:</th>
+            <td><input type="text" id="name" size="40" required></td>
+          </tr>
+          <tr>
+            <th>Алиас (URL-псевдоним):</th>
+            <td><input type="text" id="alias" size="40" required></td>
+          </tr>
+          <tr>
+            <th>Цена:</th>
+            <td><input type="number" id="price" size="40" min="0" step="0.01" required></td>
+          </tr>
+          <tr>
+            <th>Количество на складе:</th>
+            <td><input type="number" id="available" size="40" min="0" value="1" required></td>
+          </tr>
+          <tr>
+            <th>Краткое описание:</th>
+            <td><textarea id="short_description" rows="3" cols="42" placeholder="2–3 предложения" required></textarea></td>
+          </tr>
+          <tr>
+            <th>Описание:</th>
+            <td><textarea id="description" rows="5" cols="42" required></textarea></td>
+          </tr>
+        </table>
+
+        <h3>Изображение</h3>
+        <table>
+          <tr>
+            <th>Выберите изображения:</th>
+            <td><input type="file" id="product_images" name="images[]" multiple></td>
+          </tr>
+        </table>
+
+        <h3>Характеристики товара</h3>
+        <table>
+          <tr>
+            <th>Введите характеристики товара:</th>
+            <td><textarea id="characteristics" rows="5" cols="42" placeholder="Введите все характеристики товара в виде строки" required></textarea></td>
+          </tr>
+        </table>
+
+        <h3>SEO</h3>
+        <table>
+          <tr>
+            <th>Meta title:</th>
+            <td><input type="text" id="meta_title" size="40" required></td>
+          </tr>
+          <tr>
+            <th>Meta description:</th>
+            <td><textarea id="meta_description" rows="3" cols="42" required></textarea></td>
+          </tr>
+          <tr>
+            <th>Meta keywords:</th>
+            <td><input type="text" id="meta_keywords" size="40" placeholder="cement, mix, строительные материалы" required></td>
+          </tr>
+        </table>
+
+        <p>
+          <input type="submit" value="Добавить товар" id="submitProductBtn" class="btn-add-product">
+        </p>
+      </form>
+
+      <table id="resultBox" class="contact-info" style="display:none; margin-top: 16px;">
+        <tr><td>Результат добавления товара будет здесь.</td></tr>
+      </table>
+    </td>
+  </tr>
+</table>
+  <table>
+    <tr>
+      <td colspan="2" class="footer">
+        <p>© 2025 Добрострой | Все права защищены</p>
+      </td>
+    </tr>
+  </table>
+
+<!-- Подключение JS -->
+<script src="../js/admin/add_product.js?v=6" defer></script>
+<script src="../js/admin/admin-api.js?v=6" defer></script>
+
+</body>
+</html>

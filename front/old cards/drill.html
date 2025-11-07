@@ -1,0 +1,93 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Дрель Bosch - Добрострой</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<table class="header">
+    <tr>
+        <td class="header-logo"><img src="../images/logo.png"></td>
+        <td class="header-title"><h1>ДОБРОСТРОЙ</h1></td>
+        <td class="header-login">
+            <table class="login-table">
+                <tr><td><input type="text" id="loginUsername" placeholder="логин"></td></tr>
+                <tr><td><input type="password" id="loginPassword" placeholder="пароль"></td></tr>
+                <tr>
+                    <td>
+                        <button class="login-button" onclick="login()">Войти</button>
+                        <a href="register.html"><button class="login-button">Регистрация</button></a>
+                    </td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+</table>
+
+<table class="navbar">
+  <tr>
+    <td><a href="../catalog.html#materials">Строительные материалы</a></td>
+    <td><a href="../catalog.html#finishing">Отделочные материалы</a></td>
+    <td><a href="../catalog.html#tools">Инструменты</a></td>
+  </tr>
+</table>
+
+<br>
+
+<table class="main">
+    <tr>
+        <td class="sidebar">
+            <a href="../index.html">Главная</a><br>
+            <a href="../about.html">О нас</a><br>
+            <a href="../catalog.html">Каталог</a><br>
+            <a href="../contacts.html">Контакты</a>
+        </td>
+
+        <td class="content">
+            <h2>Дрель Bosch</h2>
+            <img src="../images/drill.jpg" width="300" onclick="window.open(this.src)" style="cursor:pointer;">
+            <h3>4500 Рублей</h3>
+
+            <h3>Описание товара</h3>
+            <p class="short-description">
+                Электрическая дрель Bosch — надёжный инструмент для сверления металла, дерева, пластика и других материалов.
+                Отличается компактностью, мощным двигателем и эргономичным дизайном, обеспечивающим удобство при работе.
+            </p>
+
+            <h3>Характеристики</h3>
+            <ul>
+                <li>Мощность: 600 Вт</li>
+                <li>Тип патрона: быстрозажимной, 13 мм</li>
+                <li>Частота вращения: 0–3000 об/мин</li>
+                <li>Функция реверса: есть</li>
+                <li>Вес: 1.7 кг</li>
+                <li>Длина кабеля: 2 м</li>
+                <li>Производитель: Германия</li>
+            </ul>
+
+            <h3>Подробное описание</h3>
+            <p class="full-description">
+                Дрель Bosch подходит как для бытового, так и профессионального применения. Эргономичный корпус с прорезиненной рукояткой
+                обеспечивает надёжный захват, а встроенная вентиляция защищает двигатель от перегрева. 
+                Быстрозажимной патрон позволяет легко менять сверла без дополнительных инструментов.
+            </p>
+            <p class="full-description">
+                Инструмент может использоваться для сверления в режиме шуруповёрта, имеет точный регулятор оборотов
+                и устойчиво работает при длительных нагрузках. Отличное сочетание цены, мощности и качества.
+            </p>
+
+            <p><a href="../catalog.html" class="btn-primary">← Вернуться в каталог</a></p>
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="footer">
+            <p>© 2025 Добрострой | Все права защищены</p>
+        </td>
+    </tr>
+</table>
+
+</body>
+</html>
