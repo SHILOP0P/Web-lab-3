@@ -39,7 +39,7 @@ func main() {
 	// CORS (можно выключить, если фронт всегда открывается с :8080)
 	// ============================================================
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://127.0.0.1:8080"},
+		AllowOrigins:     []string{"http://127.0.0.1:8080", "http://localhost:8080"},
 		AllowMethods:     []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Content-Type", "Accept", "Authorization"},
 		AllowCredentials: true,
@@ -92,7 +92,7 @@ func main() {
 		// products CRUD + by id
 		api.GET("/products", handlers_product.GetProducts)
 		api.POST("/products", handlers_product.AddProduct)
-		api.PUT("/products/:id", handlers_product.UpdateProduct)
+		api.PUT("/products/:id", handlers_product.UpdateProduct)      // уже есть файл
 		api.DELETE("/products/:id", handlers_product.DeleteProduct)
 		api.GET("/products/:id", handlers_product.GetProductByID)
 

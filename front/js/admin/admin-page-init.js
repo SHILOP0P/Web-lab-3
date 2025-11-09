@@ -136,7 +136,6 @@ const formattedCharacteristics = characteristics.replace(/\r?\n/g, '<br />'); //
       <tr><th>Действия</th></tr>
       <tr>
         <td>
-          <button class="btn" data-action="edit" data-product-id="${product.id}">Изменить</button>
           <button class="btn btn--danger" data-action="del-product" data-product-id="${product.id}">Удалить</button>
         </td>
       </tr>

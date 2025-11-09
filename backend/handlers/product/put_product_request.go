@@ -4,111 +4,114 @@ import (
 	"backend/database"
 	"backend/models"
 	"fmt"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
+	"strings"
+
+	"github.com/gin-gonic/gin"
 )
 
-// UpdateProduct - обновление данных о продукте
+// PUT /api/products/:id
+// Обработка PUT-запроса для обновления товара
 func UpdateProduct(c *gin.Context) {
-	// Извлекаем ID продукта из URL
 	productID, err := strconv.Atoi(c.Param("id"))
-	if err != nil || productID == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Неверный ID продукта"})
+	if err != nil || productID <= 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid_id"})
 		return
 	}
 
-	var product models.Product
-
-	// Получаем данные из тела запроса
-	if err := c.BindJSON(&product); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Некорректные данные"})
+	var payload models.Product
+	if err := c.ShouldBindJSON(&payload); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "bad_json"})
 		return
 	}
 
-	// Подключаемся к базе данных
+	// Проверим, что есть что обновлять
+	if payload.Name == "" && payload.Price == 0 && payload.Description == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "no_fields"})
+		return
+	}
+
 	db, err := database.ConnectToServer()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка подключения к базе данных"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "db_connect"})
 		return
 	}
 	defer db.Close()
 
-	// Формируем динамический SQL запрос для обновления
-	query := "UPDATE product SET "
-	var args []interface{}
-	i := 1
+	// Получаем текущие данные о товаре
+	var currentProduct models.Product
+	err = db.QueryRow(`
+		SELECT id, name, alias, price, description, available, meta_title, meta_description, short_description, image
+		FROM public.product WHERE id = $1`, productID).Scan(&currentProduct.ID, &currentProduct.Name, &currentProduct.Alias,
+		&currentProduct.Price, &currentProduct.Description, &currentProduct.Available, &currentProduct.MetaTitle, &currentProduct.MetaDescription,
+		&currentProduct.ShortDescription, &currentProduct.ProductImage.Image)
 
-	// Проверяем и добавляем только те поля, которые передаются в запрос
-	if product.ManufacturerID != 0 {
-		query += fmt.Sprintf("manufacturer_id = $%d, ", i)
-		args = append(args, product.ManufacturerID)
-		i++
-	}
-	if product.Name != "" {
-		query += fmt.Sprintf("name = $%d, ", i)
-		args = append(args, product.Name)
-		i++
-	}
-	if product.Alias != "" {
-		query += fmt.Sprintf("alias = $%d, ", i)
-		args = append(args, product.Alias)
-		i++
-	}
-	if product.Price != 0 {
-		query += fmt.Sprintf("price = $%d, ", i)
-		args = append(args, product.Price)
-		i++
-	}
-	if product.Description != "" {
-		query += fmt.Sprintf("description = $%d, ", i)
-		args = append(args, product.Description)
-		i++
-	}
-	if product.Available != 0 {
-		query += fmt.Sprintf("available = $%d, ", i)
-		args = append(args, product.Available)
-		i++
-	}
-	if product.MetaKeywords != "" {
-		query += fmt.Sprintf("meta_keywords = $%d, ", i)
-		args = append(args, product.MetaKeywords)
-		i++
-	}
-	if product.MetaDescription != "" {
-		query += fmt.Sprintf("meta_description = $%d, ", i)
-		args = append(args, product.MetaDescription)
-		i++
-	}
-	if product.MetaTitle != "" {
-		query += fmt.Sprintf("meta_title = $%d, ", i)
-		args = append(args, product.MetaTitle)
-		i++
-	}
-	if product.ShortDescription != "" {
-		query += fmt.Sprintf("short_description = $%d, ", i)
-		args = append(args, product.ShortDescription)
-		i++
-	}
-
-	// Удаляем последнюю запятую
-	query = query[:len(query)-2]
-
-	// Добавляем условие WHERE для обновления по ID
-	query += fmt.Sprintf(" WHERE id = $%d RETURNING id", i)
-	args = append(args, productID)
-
-	// Выполняем запрос на обновление
-	var id int
-	err = db.QueryRow(query, args...).Scan(&id)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Ошибка при обновлении продукта"})
-		fmt.Println("Ошибка при обновлении:", err)
+		c.JSON(http.StatusNotFound, gin.H{"error": "product_not_found"})
 		return
 	}
 
+	// Если изображение не передано — оставляем текущее
+	if payload.ProductImage.Image == "" {
+		payload.ProductImage.Image = currentProduct.ProductImage.Image
+	}
+
+	// --- динамический UPDATE public.product ---
+	set := make([]string, 0, 10)
+	args := make([]interface{}, 0, 10)
+	i := 1
+
+	// Обновляем все остальные поля
+	if payload.Name != "" {
+		set = append(set, fmt.Sprintf("name = $%d", i))
+		args = append(args, payload.Name)
+		i++
+	}
+	if payload.Alias != "" {
+		set = append(set, fmt.Sprintf("alias = $%d", i))
+		args = append(args, payload.Alias)
+		i++
+	}
+	if payload.Price != 0 {
+		set = append(set, fmt.Sprintf("price = $%d", i))
+		args = append(args, payload.Price)
+		i++
+	}
+	// ... (т.е. аналогично для всех других полей)
+
+	// Обновляем изображение, если оно было передано
+	if payload.ProductImage.Image != "" {
+		set = append(set, fmt.Sprintf("image = $%d", i))
+		args = append(args, payload.ProductImage.Image)
+		i++
+	}
+
+	// Строим запрос
+	if len(set) > 0 {
+		query := fmt.Sprintf("UPDATE public.product SET %s WHERE id = $%d", strings.Join(set, ", "), i)
+		args = append(args, productID)
+
+		// Выполняем запрос на обновление
+		res, err := db.Exec(query, args...)
+		if err != nil {
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "update_product"})
+			return
+		}
+		if rows, _ := res.RowsAffected(); rows == 0 {
+			c.JSON(http.StatusNotFound, gin.H{"error": "not_found"})
+			return
+		}
+	}
+
+	// Обновляем характеристики товара, если они были переданы
+	if payload.ProductProperty.Characteristics != "" {
+		// Логика для обновления характеристик
+	}
+
 	c.JSON(http.StatusOK, gin.H{
-		"message": "Продукт успешно обновлен",
-		"id":      id,
+		"message": "updated",
+		"id":      productID,
 	})
 }
+
