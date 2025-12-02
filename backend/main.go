@@ -10,6 +10,7 @@ import (
 	handlers_image "backend/handlers/image_upload"
 	handlers_product "backend/handlers/product"
 	handlers_reviews "backend/handlers/reviews"
+	handlers_cart "backend/handlers/cart"
 
 	"backend/handlers/auth"
 	"backend/middleware"
@@ -111,6 +112,18 @@ func main() {
 			authGroup.POST("/logout", auth.Logout)
 			authGroup.GET("/me", middleware.AuthRequired(), auth.Me)
 		}
+		
+		//cart
+		cartGroup := api.Group("/cart")
+		cartGroup.Use(middleware.AuthRequired())
+		{
+			cartGroup.GET("", handlers_cart.GetCart)
+			cartGroup.POST("", handlers_cart.AddToCart)
+			cartGroup.PUT("/:productID", handlers_cart.UpdateCartItem)
+			cartGroup.DELETE("/:productID", handlers_cart.DeleteCartItem)
+			cartGroup.DELETE("", handlers_cart.ClearCart)
+		}
+
 	}
 
 	// ============================================================

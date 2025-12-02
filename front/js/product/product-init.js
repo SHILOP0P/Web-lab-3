@@ -5,6 +5,7 @@
      : `${location.protocol}//${location.hostname}:8080`);
  const IMG_BASE = (window.AUTH && AUTH.IMG_BASE) || `${BACKEND_ORIGIN}/images_db`;
  const API_BASE = `${BACKEND_ORIGIN}/api`;
+ let CURRENT_PRODUCT = null;
 
 
 document.addEventListener('DOMContentLoaded', init);
@@ -20,8 +21,10 @@ async function init() {
       return;
     }
     const p = await resp.json();
-    console.log(p)
+    console.log(p);
+    CURRENT_PRODUCT = p;   // запоминаем товар
     renderProduct(p);
+
   } catch (e) {
     console.error(e);
     renderNotFound();
@@ -96,6 +99,48 @@ function text(id, value) {
   const el = document.getElementById(id);
   if (el) el.textContent = value;
 }
+
+// ==== Добавление товара в корзину ====
+
+// ==== Добавление товара в корзину ====
+
+// делаем функцию глобальной через window, чтобы её видел onclick в HTML
+window.addToCart = async function () {
+  const product = CURRENT_PRODUCT;
+  if (!product || !product.id) {
+    alert('Товар ещё не загрузился.');
+    return;
+  }
+
+  try {
+    const resp = await fetch(`${API_BASE}/cart`, {
+      method: 'POST',
+      credentials: 'include',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        productId: product.id,
+        quantity: 1
+      })
+    });
+
+    if (resp.status === 401) {
+      alert('Чтобы добавить товар в корзину, войдите в аккаунт.');
+      return;
+    }
+
+    if (!resp.ok) {
+      alert('Не удалось добавить товар в корзину.');
+      return;
+    }
+
+    alert('Товар добавлен в корзину.');
+  } catch (e) {
+    console.error(e);
+    alert('Ошибка при добавлении товара в корзину.');
+  }
+}
+
+
 function escapeHtml(s='') {
   return String(s)
     .replaceAll('&','&amp;')

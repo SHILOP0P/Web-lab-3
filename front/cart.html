@@ -2,11 +2,10 @@
 <head>
     <meta charset="UTF-8">
     <base href="/front/">
-    <title>Каталог - Добрострой</title>
+    <title>О компании - Добрострой</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
 
 <table class="header">
     <tr>
@@ -34,7 +33,7 @@
 <table class="navbar">
   <tr>
     <td><a href="catalog.html#materials">Строительные материалы</a></td>
-    <td><a href="catalog.html#tools">Инструменты</a></td>
+    <td><a href="catalog.html#finishing">Отделочные материалы</a></td>
     <td><a href="catalog.html#tools">Инструменты</a></td>
   </tr>
 </table>
@@ -52,22 +51,36 @@
             <a href="catalog.html">Каталог</a><br>
             <a href="contacts.html">Контакты</a><br>
             <a href="cart.html">Корзина</a><br>
-
         </td>
 
 
         <td class="content">
-            <h2 align="center">Каталог</h2>
-            <h3 id="materials" class="category-title">Строительные материалы</h3>
-            <div class="category" id="materialsList"></div>
+            <h2 align="center">Корзина</h2>
 
-            <!-- ===== Категория 2 ===== -->
-            <h3 id="finishing" class="category-title">Отделочные материалы</h3>
-            <div class="category" id="finishingList"></div>
+            <p id="cartEmptyMsg" style="display: none; text-align: center; margin-bottom: 10px;">
+                Загрузка корзины...
+            </p>
 
-            <!-- ===== Категория 3 ===== -->
-            <h3 id="tools" class="category-title">Инструменты</h3>
-            <div class="category" id="toolsList"></div>
+            <table id="cartTable" class="cart-table">
+                <tr>
+                    <th>Фото товара</th>
+                    <th>Товар</th>
+                    <th>Цена, руб.</th>
+                    <th>Количество</th>
+                    <th>Сумма, руб.</th>
+                    <th>Действие</th>
+                </tr>
+                <!-- строки будут добавляться скриптом -->
+            </table>
+
+            <p style="text-align: right; margin-top: 10px;">
+                <b>Итого: <span id="cartTotal">0</span> рублей</b>
+            </p>
+
+            <p style="text-align: right; margin-top: 10px;">
+                <button class="btn" id="clearCartBtn">Очистить корзину</button>
+                <button class="btn-primary" id="checkoutBtn">Оформить заказ</button>
+            </p>
         </td>
 
     </tr>
@@ -76,12 +89,13 @@
     <tr>
         <td colspan="2" class = "footer">
             <p><a href="reviews.html">Отзывы</a> | © 2025 Добрострой | Все права защищены</p>
+
         </td>
     </tr>
 </table>
-
-<script src="js/catalog/catalog-init.js" defer></script>
 <script src="/js/auth/auth-api.js?v=6"></script>
 <script src="/js/auth/header-auth.js?v=6"></script>
+<script src="/js/cart/cart-init.js?v=6"></script>
+
 </body>
 </html>
