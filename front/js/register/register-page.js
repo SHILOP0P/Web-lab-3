@@ -24,6 +24,16 @@
       return;
     }
 
+    const agree = document.getElementById("agreeTerms");
+    if (!agree || !agree.checked) {
+      if (msg) {
+        msg.textContent = "Чтобы зарегистрироваться, необходимо согласиться с Пользовательским соглашением и Политикой конфиденциальности.";
+        msg.style.color = "red";
+      }
+      return;
+    }
+
+
     try {
       await window.AUTH.register({ username, email, password, firstName, lastName, phone, gender, birthdate, region });
       if (msg) { msg.textContent = "Регистрация успешна!"; msg.style.color = "green"; }
